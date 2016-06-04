@@ -105,3 +105,29 @@ let out3 = hyperbolicTangentSigmoid (ramp1)
 
 plotArrayInPlayground(out3, title: "hyperbolicTangentSigmoid")
 
+public func max (a: [Double]) -> Double {
+    //Vector maximum magnitude; double precision.
+    var result = 0.0
+    vDSP_maxmgvD(a,1,&result,UInt(a.count))
+    return result
+}
+
+func competative (input: [Double]) -> [Double] {
+    
+    var output = [Double](count: input.count, repeatedValue:0.0)
+    
+    let max1=max(input)
+    
+    for (index,currentValue) in input.enumerate()
+    {
+        if currentValue==max1 {
+            output[index]=1
+        }
+    }
+    return output
+}
+
+let out4 = competative (ramp1)
+
+plotArrayInPlayground(out4, title: "competative")
+
